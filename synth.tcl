@@ -14,5 +14,5 @@ create_clock -period 10 -name default
 set_clock_uncertainty 5%
 #source "./ip-mergesorter-32bit/solution1/directives.tcl"
 csynth_design
-export_design -format syn_dcp
+#export_design -format syn_dcp
 quit
