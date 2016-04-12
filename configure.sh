@@ -83,6 +83,8 @@ fi
 ruby ./generator/genIP.rb $SIZE $FIFO > ./src/main.cpp
 echo "success: Merge sort HLS IP of size $1 is written into ./src/main.cpp" 1>&2
 
+sed -i "/define LOOPSIZE/c\#define LOOPSIZE $SIZE" ./driver/rt_mergetree/java/util/sortlib.c
+
 #synth.tcl set_part
 if [ "$SHELL" = "shell-vc707-xillybus-ap_fifo32" ]; then
 	sed -i "/set_part/c\set_part {xc7vx485tffg1761-2}" synth.tcl
