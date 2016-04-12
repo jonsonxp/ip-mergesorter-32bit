@@ -12,20 +12,6 @@ case $i in
 esac
 done
 
-#cleaning
-rm -rf ip-mergesorter-32bit
-rm -rf output
-
-#execute the vivado_hls synthesis
-vivado_hls -f synth.tcl
-
-#copy the dcp and verilog to output folder
-mkdir output
-mkdir output/dcp
-mkdir output/verilog
-cp ip-mergesorter-32bit/solution1/impl/ip/ip_mergesorter_32bit.dcp ./output/dcp
-cp ip-mergesorter-32bit/solution1/syn/verilog/* ./output/verilog/
-
 #compile and install the ip driver
 if [ "$DRIVER" ]; then
 	if [ -z "$JAVA_HOME" ]; then
@@ -40,4 +26,19 @@ if [ "$DRIVER" ]; then
         mkdir ~/.hcode/ip-drivers
         mkdir ~/.hcode/ip-drivers/ip-mergesorter-32bit
         cp -r driver/rt_mergetree ~/.hcode/ip-drivers/ip-mergesorter-32bit
+        exit
 fi
+
+#cleaning
+rm -rf ip-mergesorter-32bit
+rm -rf output
+
+#execute the vivado_hls synthesis
+vivado_hls -f synth.tcl
+
+#copy the dcp and verilog to output folder
+mkdir output
+mkdir output/dcp
+mkdir output/verilog
+cp ip-mergesorter-32bit/solution1/impl/ip/ip_mergesorter_32bit.dcp ./output/dcp
+cp ip-mergesorter-32bit/solution1/syn/verilog/* ./output/verilog/
