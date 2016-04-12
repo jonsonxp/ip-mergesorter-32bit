@@ -3,8 +3,8 @@
 for i in "$@"
 do
 case $i in
-        --no-driver)
-        NODRIVER=1
+        -driver)
+        DRIVER=1
         shift
         ;;
         *)
@@ -26,8 +26,8 @@ mkdir output/verilog
 cp ip-mergesorter-32bit/solution1/impl/ip/ip_mergesorter_32bit.dcp ./output/dcp
 cp ip-mergesorter-32bit/solution1/syn/verilog/* ./output/verilog/
 
-#compile the ip driver
-if [ -z "$NODRIVER" ]; then
+#compile and install the ip driver
+if [ "$DRIVER" ]; then
 	if [ -z "$JAVA_HOME" ]; then
         	echo "Please setup the JAVA_HOME environment parameter. For example,"
         	echo "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/"
